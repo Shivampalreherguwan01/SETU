@@ -1,0 +1,48 @@
+<!DOCTYPE html><html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Contact</title>
+</head>
+<body><h2>Add Contact</h2><input id="name" placeholder="Name">
+<br><br><input id="mobile" placeholder="Mobile Number">
+<br><br><button onclick="saveContact()">
+Save Contact
+</button><p id="result"></p><script>
+
+async function saveContact(){
+
+let owner =
+localStorage.getItem("setuMobile");
+
+let name =
+document.getElementById("name").value;
+
+let mobile =
+document.getElementById("mobile").value;
+
+let response = await fetch(
+"/save-contact",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+owner,
+name,
+mobile
+})
+}
+);
+
+let data =
+await response.json();
+
+document.getElementById("result")
+.innerHTML = data.message;
+
+}
+
+</script></body>
+</html>
