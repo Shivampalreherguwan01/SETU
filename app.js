@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io("https://setu-zo64.onrender.com");
 
 let currentUser = "";
 
